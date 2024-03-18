@@ -30,7 +30,7 @@ on:
       LOCAL_MANIFEST:
         description: "Personal local manifest [repository or raw]:"
         required: true
-        default: 'https://github.com/CEKIKOFGAMERS/local_manifest'
+        default: 'https://github.com/CEKIKOFGAMERS/local_manifests'
       LOCAL_MANIFEST_BRANCH:
         description: "Personal local manifest's branch:"
         required: false
