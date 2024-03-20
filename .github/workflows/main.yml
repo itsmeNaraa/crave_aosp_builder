@@ -141,7 +141,7 @@ jobs:
                       
               fi
               git clone ${{ github.event.inputs.LOCAL_MANIFEST }} --depth 1 -b ${{ github.event.inputs.LOCAL_MANIFEST_BRANCH }} .repo/local_manifests && \
-              timeout 1m /opt/crave/resync.sh --force-sync || { exit_code=$?; [ $exit_code -eq 124 ] || (echo "Error: Process failed with exit code $exit_code"; exit $exit_code); }
+              timeout 1m bash /opt/crave/resync.sh --force-sync || { exit_code=$?; [ $exit_code -eq 124 ] || (echo "Error: Process failed with exit code $exit_code"; exit $exit_code); }
               rm -rf .repo
       timeout-minutes: 10  
       
@@ -198,7 +198,7 @@ jobs:
         fi \
 
         # Sync the repositories
-        /opt/crave/resync.sh -c -j\$(nproc --all) --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync  && \
+        bash /opt/crave/resync.sh -c -j\$(nproc --all) --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync  && \
 
         # Set up build environment
         export BUILD_USERNAME=${{ github.actor }} ; \
